@@ -1,0 +1,16 @@
+timezone: Asia/Shanghai
+encoding: utf-8
+permalink: /:categories/:year/:month/:day/:title
+paginate: 1
+paginate_path: "blog/page:num"
+
+author: sapser
+author_mail: sapser@126.com
+
+defaults:
+  -
+    scope:
+      path: ""
+      type: "post"
+    values:
+      layout: "default"
