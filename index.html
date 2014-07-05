@@ -6,7 +6,7 @@ title: hello_sapser
 <ul>
 {% for post in site.posts %}
   <li>
-    <h4><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></h4>
+  <h4><a href="{{ post.url | prepend: site.baseurl }}">{{ site.url }}{{ post.title }}</a></h4>
     <span>{{ post.date | date: "%b %d, %Y" }} </span>
     {{ post.excerpt }}
   </li>
