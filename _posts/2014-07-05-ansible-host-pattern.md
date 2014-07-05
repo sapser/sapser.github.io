@@ -1,11 +1,9 @@
 ---
-title:  "zabbix主机匹配模式"
+title:  "ansible学习三：HOST PATTERN"
 date:   2014-07-05 22:07:00
-categories: zabbix
+categories: ansible
 ---
 
-# zabbix学习三：HOST PATTERN
----
 ansible可以使用多种`host pattern`来指定远程主机，用在如在两个地方：
 - 命令行`ansible [host pattern] -m module -a arguments`
 - playbook中通过`- hosts: [host pattern]`来指定要执行该play的远程主机

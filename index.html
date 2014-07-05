@@ -1,14 +1,16 @@
 ---
 layout: default
-title: hello_sapser
+title: sapser's blog
 ---
 
 <ul>
 {% for post in site.posts %}
   <li>
-  <h4><a href="{{ post.url | prepend: site.baseurl }}">{{ site.url }}{{ post.title }}</a></h4>
-    <span>{{ post.date | date: "%b %d, %Y" }} </span>
-    {{ post.excerpt }}
+    <h4>
+      <a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+      <small><span>posted: {{ post.date | date: "%b %d, %Y" }} </span></small>
+      <small><span>category: {{ post.categories }}</span></small>
+    </h4>
   </li>
 {% endfor %}
 </ul>
