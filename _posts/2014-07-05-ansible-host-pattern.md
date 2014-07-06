@@ -1,8 +1,8 @@
 ---
 layout: post
-title:  "ansible学习三：HOST PATTERN"
-date:   2014-07-05 22:07:00
-categories: ansible
+title: "ansible学习三：HOST PATTERN"
+date: 2014-07-05 22:07:00
+categories: ansibe
 ---
 
 ansible可以使用多种`host pattern`来指定远程主机，用在如在两个地方：

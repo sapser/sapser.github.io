@@ -2,6 +2,7 @@ baseurl: http://sapser.github.io/
 timezone: Asia/Shanghai
 encoding: utf-8
 markdown: kramdown
+highlighter: pygments
 permalink: /:categories/:year/:month/:day/:title
 
 author: sapser

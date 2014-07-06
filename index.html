@@ -8,7 +8,7 @@ title: sapser's blog
   <li>
     <h4>
       <a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
-      <small>{{ post.date | date: "%b %-d, %Y" }} • {% for category in page.categories %} • {{ category }}{% endfor %}</small>
+      <small>{{ post.date | date: "%b %-d, %Y" }} • {% for category in post.categories %} • {{ category }}{% endfor %}</small>
     </h4>
   </li>
 {% endfor %}
