@@ -6,11 +6,3 @@ permalink: /:categories/:year/:month/:day/:title
 
 author: sapser
 author_mail: sapser@126.com
-
-defaults:
-  -
-    scope:
-      path: ""
-      type: "post"
-    values:
-      layout: "post"

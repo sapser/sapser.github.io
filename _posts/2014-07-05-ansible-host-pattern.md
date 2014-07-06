@@ -1,4 +1,5 @@
 ---
+layout: post
 title:  "ansible学习三：HOST PATTERN"
 date:   2014-07-05 22:07:00
 categories: ansible

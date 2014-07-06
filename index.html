@@ -7,9 +7,8 @@ title: sapser's blog
 {% for post in site.posts %}
   <li>
     <h4>
-        <span>posted: {{ post.date | date: "%b %d, %Y" }} >> </span>
       <a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
-      <small><span>  categories: {{ post.categories }}</span></small>
+      <small>{{ post.date | date: "%b %-d, %Y" }} • {% for category in page.categories %} • {{ category }}{% endfor %}</small>
     </h4>
   </li>
 {% endfor %}
