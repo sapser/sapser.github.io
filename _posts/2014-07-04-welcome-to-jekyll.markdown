@@ -1,4 +1,5 @@
 ---
+layout: post
 title:  "Welcome to Jekyll!"
 date:   2014-07-04 10:46:33
 categories: linux

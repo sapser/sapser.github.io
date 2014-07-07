@@ -37,10 +37,10 @@
 
 <br />
 <h4><span class="glyphicon glyphicon-paperclip"></span> RECENT POSTS</h4>
+<!-- 只显示最近10篇博文 -->
 {% for post in site.posts %}
-  <!-- 只显示最近10篇 -->
-  {% if forloop.index < 11 %}
-      <p>&nbsp;&nbsp;&nbsp;<a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></p>
-  {% endif %}
+    {% if forloop.index < 11 %}
+        <p>&nbsp;&nbsp;&nbsp;<a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></p>
+    {% endif %}
 {% endfor %}
 

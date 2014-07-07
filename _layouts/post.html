@@ -9,3 +9,15 @@ layout: default
 </p>
 
 {{ content }}
+
+<br />
+<br />
+{% if page.previous != nil %}
+    <p>上一篇：<a href="{{ page.previous.url }}">{{ page.previous.title }}</a></p>
+{% endif %}
+
+{% if page.next != nil %}
+    <p>下一篇：<a href="{{ page.next.url }}">{{ page.next.title }}</a></p>
+{% endif %}
+<br />
+<br />
