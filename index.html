@@ -6,10 +6,10 @@ title: sapser's blog
 <ul>
 {% for post in site.posts %}
   <li>
-    <h4>
+    <h3>
       <a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
-      <small>{{ post.date | date: "%b %-d, %Y" }} • {% for category in post.categories %} • {{ category }}{% endfor %}</small>
-    </h4>
+      <small>{{ post.date | date: "%b %-d, %Y" }}{% for category in post.categories %} • {{ category }}{% endfor %}</small>
+    </h3>
   </li>
 {% endfor %}
 </ul>
