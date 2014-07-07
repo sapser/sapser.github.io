@@ -1,4 +1,4 @@
-baseurl: http://sapser.github.io/
+#baseurl: http://sapser.github.io/
 timezone: Asia/Shanghai
 encoding: utf-8
 markdown: kramdown
