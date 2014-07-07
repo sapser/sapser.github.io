@@ -3,13 +3,14 @@ layout: default
 title: sapser's blog
 ---
 
+<br />
 <ul>
 {% for post in site.posts %}
   <li>
-    <h3>
+    <h4>
       <a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
       <small>{{ post.date | date: "%b %-d, %Y" }}{% for category in post.categories %} • {{ category }}{% endfor %}</small>
-    </h3>
+    </h4>
   </li>
 {% endfor %}
 </ul>

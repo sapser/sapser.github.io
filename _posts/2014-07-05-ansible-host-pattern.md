@@ -1,22 +1,22 @@
 ---
 layout: post
-title: "ansible学习三：HOST PATTERN"
-date: 2014-07-05 22:07:00
+title: "ansible学习之三：HOST PATTERN"
+date: 2014-07-05 22:07:00 +0800
 categories: ansible
 ---
 
-ansible可以使用多种`host pattern`来指定远程主机，用在如在两个地方：
-- 命令行`ansible [host pattern] -m module -a arguments`
-- playbook中通过`- hosts: [host pattern]`来指定要执行该play的远程主机
+ansible可以使用多种`host pattern`来指定远程主机，用在如下两个地方：
++ 命令行`ansible [host pattern] -m module -a arguments`
++ playbook中通过`- hosts: [host pattern]`来指定要执行该play的远程主机
 
 ### 匹配hosts中所有主机
-```
+{% highlight bash %}
 ansible all -m ping
 ansible '*' -m ping
-```
-
+{% endhighlight %}
+  
 ### 指定单个组或主机
-```
+{% highlight bash %}
 [root@centos6 ansible]# ansible 12 -m ping
 12 | success >> {
     "changed": false,
@@ -32,20 +32,20 @@ ansible '*' -m ping
     "changed": false,
     "ping": "pong"
 }
-```
+{% endhighlight %}
 
 ### 多个用`:`隔开的组，表示匹配这些组中的任一主机
 指定两个组：
-```
+{% highlight bash %}
 [test1]
 12
 13
 [test2]
 13
 14
-```
+{% endhighlight %}
 执行命令：
-```
+{% highlight bash %}
 [root@centos6 ansible]# ansible "test1:test2" -m ping               #同时属于多个组的主机只会执行一次
 14 | success >> {
     "changed": false,
@@ -59,20 +59,20 @@ ansible '*' -m ping
     "changed": false,
     "ping": "pong"
 }
-```
+{% endhighlight %}
 
 ### 组前面加上`!`表示排除这个组中的主机
 指定两个组：
-```
+{% highlight bash %}
 [test1]
 12
 13
 14
 [test2]
 13
-```
+{% endhighlight %}
 执行命令：
-```
+{% highlight bash %}
 [root@centos6 ansible]# ansible 'test1:!test2' -m ping          #匹配所有在test1组却不在test2组中的主机
 14 | success >> {
     "changed": false,
@@ -82,33 +82,33 @@ ansible '*' -m ping
     "changed": false,
     "ping": "pong"
 }
-```
+{% endhighlight %}
 
 ### `&`表示求交集
 先在hosts文件指定两个组：
-```
+{% highlight bash %}
 [test1]
 12
 13
 [test2]
 13
 14
-```
+{% endhighlight %}
 然后执行命令：
-```
+{% highlight bash %}
 [root@centos6 ansible]# ansible "test1:&test2" -m ping          #匹配同时在test1和test2组中的主机
 13 | success >> {
     "changed": false,
     "ping": "pong"
 }
-```
+{% endhighlight %}
 
-一个复杂的匹配：
+一个复杂的匹配：  
 `webservers:dbservers:&staging:!phoenix`  
 首先取出属于webservers组和dbservers组的所有主机，然后取出这些主机中同时也属于staging组的那部分，然后再去掉不属于phoenix组的那些
 
 ### 使用通配符
-```
+{% highlight bash %}
 [root@centos6 ansible]# ansible '14?' -m ping          #通配符中"?"表示匹配任意一个字符
 145 | success >> {
     "changed": false,
@@ -122,10 +122,10 @@ ansible '*' -m ping
     "changed": false,
     "ping": "pong"
 }
-```
+{% endhighlight %}
 
 ### 以`~`开头表示使用正则表达式
-```
+{% highlight bash %}
 [root@centos6 ansible]# ansible '~test.*' -m ping
 12 | success >> {
     "changed": false,
@@ -139,7 +139,7 @@ ansible '*' -m ping
     "changed": false,
     "ping": "pong"
 }
-```
+{% endhighlight %}
 
 
 
