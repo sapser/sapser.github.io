@@ -1,11 +1,21 @@
 baseurl: http://sapser.github.io
 timezone: Asia/Shanghai
 encoding: utf-8
-#markdown: kramdown
-#markdown: redcarpet
-markdown: rdiscount
+
+#mardown解释器
+#redcarpet支持```python这种语法
+markdown: redcarpet
+#支持markdown扩展名
+markdown_ext:  markdown,mkdown,mkdn,mkd,md
+
+#使用pygments来高亮代码
 highlighter: pygments
+
+#uri格式
 permalink: /:categories/:year/:month/:day/:title
+
+#阻止Liquid Exception: highlight tag was never closed错误
+excerpt_separator: ""
 
 author: sapser
 author_mail: sapser@126.com
