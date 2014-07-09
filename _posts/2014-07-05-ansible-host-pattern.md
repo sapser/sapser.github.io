@@ -1,15 +1,16 @@
 ---
 layout: post
-title: "ansible学习之三：HOST PATTERN"
+title: "ansible学习之三：Host Patterns"
 date: 2014-07-05 22:07:00 +0800
 categories: ansible
 ---
 
-ansible可以使用多种`host pattern`来指定远程主机，用在如下两个地方：
+ansible可以使用多种`host patterns`来指定远程主机，用在如下两个地方：
 <ul>
-<li>命令行<code>ansible [host pattern] -m module -a arguments</code></li>
-<li>playbook中通过<code>- hosts: [host pattern]</code>来指定要执行该play的远程主机</li>
+<li>命令行<code>ansible [host patterns] -m module -a arguments</code></li>
+<li>playbook中通过<code>- hosts: [host patterns]</code>来指定要执行该play的远程主机</li>
 </ul>
+同时要注意，`ansible`和`ansible-playbook`命令还提供了`-l,--limit`参数，对上面匹配出的结果会再进行一次过滤。
 
 
 <br />
@@ -120,7 +121,7 @@ ansible '*' -m ping
 
 <br />
 #### `&`表示求组的交集
-在hosts文件指定两个组：
+在hosts文件配置两个组：
 
 ```
 [test1]
@@ -147,7 +148,7 @@ ansible '*' -m ping
 <br />
 #### 使用通配符
 ```bash
-[sapser@centos6 ansible]$ ansible '1?' -m ping          #通配符"?"匹配单个字符
+[sapser@centos6 ansible]$ ansible '1?' -m ping          #匹配"1"开头再接一个任意字符的主机或组
 12 | success >> {
     "changed": false,
     "ping": "pong"
@@ -165,8 +166,20 @@ ansible '*' -m ping
 
 <br />
 #### 以`~`开头表示使用正则表达式
+在hosts文件配置两个组：
+
+```
+[test1]
+12
+13
+[test2]
+13
+14
+```
+执行命令：
+
 ```bash
-[sapser@centos6 ansible]$ ansible '~test.*' -m ping 
+[sapser@centos6 ansible]$ ansible '~test.*' -m ping       #这里匹配到了test1和test2组
 12 | success >> {
     "changed": false,
     "ping": "pong"
