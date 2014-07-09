@@ -21,6 +21,7 @@
       </div>
     </div>
 
+    <!--导航条-->
     <div class="container">
       <ul class="nav nav-tabs" role="tablist">
         <li><a href="/">Home</a></li>
@@ -28,11 +29,27 @@
       </ul>
 
       <div class="row">
+        <!--侧边栏-->
         <div class="col-md-3">
           {% include sidebar.html %}
         </div>
+        <!--正文部分-->
         <div class="col-md-9">
           {{ content }}
+
+            <!-- 多说公共JS代码 start -->
+            <script type="text/javascript">
+            var duoshuoQuery = {short_name:"sapser"};
+                    (function() {
+                            var ds = document.createElement('script');
+                            ds.type = 'text/javascript';ds.async = true;
+                            ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+                            ds.charset = 'UTF-8';
+                            (document.getElementsByTagName('head')[0] 
+                             || document.getElementsByTagName('body')[0]).appendChild(ds);
+                    })();
+            </script>
+            <!-- 多说公共JS代码 end -->
         </div>
       </div> <!-- <div class="row"> -->
     </div> <!-- <div class="container"> -->
