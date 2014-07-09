@@ -17,7 +17,7 @@ pip install ansible
 ```bash
 pip install ansible==1.6.3
 ```
-这里我遇到一个问题，CentOS6.5安装ansible1.6.3版本后，执行`ansible`命令一直提示：  
+这里我遇到一个问题，CentOS6.5安装ansible1.6.3后，执行`ansible`命令一直提示：  
 `PowmInsecureWarning: Not using mpz_powm_sec.  You should rebuild using libgmp >= 5 to avoid timing attack vulnerability.`  
 然后通过源码安装gmp-6.0.0包到`/usr`目录下，并重新安装pycrypto包后解决。
 
@@ -26,7 +26,7 @@ pip install ansible==1.6.3
 #### 远程连接
 从1.3版本开始，ansible默认使用原生openssh来连接远程主机，并开启`ControlPersist`指令优化连接速度和Kerberos。如果使用的是RHEL系统及其衍生系统如CentOS，openssh的版本太旧，不支持`ControlPersist`（openssh5.6版本才开始增加`ControlPersist`指令），这时候ansible就会选择使用paramiko来连接远程主机。
 
-ansible支持密码验证和私钥验证，默认是使用私钥验证。如果想使用密码验证，则需要为`ansible`和`ansible-playbook`命令提供`-k, --ask-pass`参数，连接远程主机时会提示你输入密码，默认使用root用户登录，可以通过`-u, --user`参数修改，或在ansible.cfg配置文件中定义。
+ansible支持密码验证和私钥验证，默认是使用私钥验证。如果想使用密码验证，则需要为`ansible`和`ansible-playbook`命令提供`-k, --ask-pass`参数，连接远程主机时会提示你输入用户密码。
 
 
 <br />
@@ -42,7 +42,7 @@ Enter passphrase for key '/home/sapser/.ssh/id_rsa':
     "ping": "pong"
 }
 ```
-如果你使用密码验证，则还需要加上`-k`参数和可选的`-u`参数来转换到密码验证模式。
+如果你使用密码验证，则还需要加上`-k`参数来转换到密码验证模式，默认远程连接使用你所在的当前用户，可以使用`-u`参数指定用什么用户连接。
 
 ansible支持私钥验证，但是如果你私钥有密码的话，ansible不会帮你自动填密码，如上面例子每次执行都需要手动输入一次密码。可以使用`ssh-agent`和`ssh-add`命令来自动填私钥密码：
 
@@ -75,7 +75,7 @@ fi
 ```
 一般建议服务器都设置成私钥验证，比密码验证安全性高很多，私钥属于每个人独有，完全不用担心别人用自己的账号登陆到服务器做坏事。
 
-差不多基本配置完成，可以连接到远程主机执行各种各样的操作，ansible提供了大量的模块用来完成不同的任务，`ansible-doc -l`列出所有可用模块，`ansible-doc shell`查看`shell`模块文档，如在远程主机执行命令：
+差不多基本配置完成，可以连接到远程主机执行各种各样的操作，ansible提供了大量的模块用来完成不同的任务，`ansible-doc -l`列出所有可用模块，`ansible-doc shell`查看`shell`模块文档，如利用`shell`模块在远程主机执行命令：
 
 ```bash
 [sapser@centos6 ~]$ ansible all -m shell -a "uname -a"
