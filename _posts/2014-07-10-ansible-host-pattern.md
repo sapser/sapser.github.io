@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "ansible学习之三：Host Patterns"
-date: 2014-07-05 22:07:00 +0800
+date: 2014-07-10 22:07:00 +0800
 categories: ansible
 ---
 
