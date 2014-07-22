@@ -1,4 +1,4 @@
 sapser.github.io
 ================
 
-my blog
+my blog: [sapser's blog](http://sapser.github.io/)
