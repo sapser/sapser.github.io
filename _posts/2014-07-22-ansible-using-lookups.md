@@ -7,7 +7,7 @@ categories: ansible
 
 {% raw %}
 
-Lookup插件允许ansible从外部资源获取数据，用`lookup()`函数表示
+在playbooks中可以使用一个名为`lookup()`的函数，该函数用于ansible从外部资源访问数据，根据第一个参数的不同，该函数具有不同的功能，典型的就是读取外部文件内容。注意`lookup()`只在本地执行，而不是在远程主机上执行。
 
 
 <br />
@@ -16,23 +16,84 @@ Lookup插件允许ansible从外部资源获取数据，用`lookup()`函数表示
 ```yaml
 - hosts: all
   vars:
-     contents: "{{ lookup('file', '/etc/foo.txt') }}"
+     contents: "{{ lookup('file', '/etc/foo.txt') }}"      #将值保存到变量中，参数都要引号引起来，不然出错
   tasks:
      - debug: msg="the value of foo.txt is {{ contents }}"
+
+     - debug: msg="the value of foo.txt is {{ lookup('file', '/etc/foo.txt') }}"      #直接使用
 ```
 
 
 <br />
-第一个参数为`password`，表示生成一个随机明文密码，并存储到指定文件中，生成的密码包括大小写字母、数字和".,:-_"，默认密码长度为20个字符
+第一个参数为`password`，表示生成一个随机明文密码，并存储到指定文件中，生成的密码包括大小写字母、数字和`.,:-_`，默认密码长度为20个字符，该长度可以通过传递一个额外参数`length=<length>`修改
 
 ```yaml
 ---
-- hosts: all
+- hosts: 127.0.0.1
+  gather_facts: no
   tasks:
-    # create a mysql user with a random password:
-    - mysql_user: name={{ client }}
-                  password="{{ lookup('password', 'credentials/' + client + '/' + tier + '/' + role + '/mysqlpassword length=15') }}"
-                  priv={{ client }}_{{ tier }}_{{ role }}.*:ALL
+    - debug: msg="password - {{ lookup('password', '/tmp/random_pass.txt length=10') }}"
+```
+测试：
+
+```bash
+$ ansible-playbook test.yml 
+
+PLAY [127.0.0.1] ************************************************************** 
+
+TASK: [debug msg="password - ejL.Ho_.mb"] ************************************* 
+ok: [127.0.0.1] => {
+    "msg": "password - ejL.Ho_.mb"
+}
+
+PLAY RECAP ******************************************************************** 
+127.0.0.1                  : ok=1    changed=0    unreachable=0    failed=0 
+
+$ cat /tmp/random_pass.txt 
+ejL.Ho_.mb
+```
+如果用来保存密码的文件已经存在，则不会往里写入任何数据，且会读取文件已有内容作为密码，如果文件存在且为空，则返回一个空字符串作为密码。
+
+除了`length=<length>`外，从ansible1.4开始还加入了`chars=<chars>`参数，用于自定义生成密码的字符集，而不是默认的大小写字母、数字和`.,:-_`
+
+```yaml
+---
+- hosts: 127.0.0.1
+  gather_facts: no
+  tasks:
+    #create a random password using only ascii letters:
+    - debug: msg="password - {{ lookup('password', '/tmp/passfile1 chars=ascii_letters') }}"
+
+    #create a random password using only digits:
+    - debug: msg="password - {{ lookup('password', '/tmp/passfile2 chars=digits') }}"
+    
+    #create a random password using many different char sets:
+    - debug: msg="password - {{ lookup('password', '/tmp/passfile3 chars=ascii_letters,digits,hexdigits,punctuation,,') }}"   #逗号本身用",,"表示
+```
+测试：
+
+```bash
+$ ansible-playbook test.yml 
+
+PLAY [127.0.0.1] ************************************************************** 
+
+TASK: [debug msg="password - funEtMBYbqWTUdPlfIGC"] *************************** 
+ok: [127.0.0.1] => {
+    "msg": "password - funEtMBYbqWTUdPlfIGC"
+}
+
+TASK: [debug msg="password - 79223199493177921267"] *************************** 
+ok: [127.0.0.1] => {
+    "msg": "password - 79223199493177921267"
+}
+
+TASK: [debug msg="password - 0,92YO4R0m6iqg2=4RA8"] *************************** 
+ok: [127.0.0.1] => {
+    "msg": "password - 0,92YO4R0m6iqg2=4RA8"
+}
+
+PLAY RECAP ******************************************************************** 
+127.0.0.1                  : ok=3    changed=0    unreachable=0    failed=0 
 ```
 
 
@@ -44,11 +105,7 @@ Lookup插件允许ansible从外部资源获取数据，用`lookup()`函数表示
 - hosts: all
   tasks:
 
-     - debug: msg="{{ lookup('env','HOME') }} is an environment variable"      #'env'表示获取系统环境变量
-
-     - debug: msg="{{ item }} is a line from the result of this command"
-       with_lines:
-         - cat /etc/motd
+     - debug: msg="{{ lookup('env','HOME') }} is an environment variable"
 
      - debug: msg="{{ lookup('pipe','date') }} is the raw result of running this command"
 
