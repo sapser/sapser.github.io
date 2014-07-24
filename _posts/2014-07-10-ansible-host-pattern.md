@@ -10,7 +10,6 @@ ansible可以使用多种`host patterns`来指定远程主机，用在如下两�
 <li>命令行<code>ansible [host patterns] -m module -a arguments</code></li>
 <li>playbook中通过<code>- hosts: [host patterns]</code>来指定要执行该play的远程主机</li>
 </ul>
-同时要注意，`ansible`和`ansible-playbook`命令还提供了`-l,--limit`参数，对上面匹配出的结果会再进行一次过滤。
 
 
 <br />
@@ -193,4 +192,22 @@ ansible '*' -m ping
     "ping": "pong"
 }
 ```
+
+
+<br />
+同时要注意，`ansible`和`ansible-playbook`命令还提供了`-l,--limit`参数，对上面匹配出的结果会再进行一次过滤：
+
+```bash
+$ ansible '12:14:146' -m ping -l '14*'
+146 | success >> {
+    "changed": false,
+    "ping": "pong"
+}
+
+14 | success >> {
+    "changed": false,
+    "ping": "pong"
+}
+```
+
 

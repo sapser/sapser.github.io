@@ -17,7 +17,7 @@ ansible默认会检查命令和模块的返回状态，并进行相应的错误�
   command: /bin/false
   ignore_errors: yes
 ```
-该command返回非零状态码，也不会处理
+`command`和`shell`模块执行的命令如果返回非零状态码则ansible判定这两个模块执行失败，可以通过`ignore_errors: yes`忽略返回状态码。
 
 
 <br />

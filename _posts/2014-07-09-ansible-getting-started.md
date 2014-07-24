@@ -82,3 +82,32 @@ fi
 172.16.9.141 | success | rc=0 >>
 Linux centos6 2.6.32-431.el6.x86_64 #1 SMP Fri Nov 22 03:15:09 UTC 2013 x86_64 x86_64 x86_64 GNU/Linux
 ```
+
+<br />
+最后附上ansible命令参数：
+
+```bash
+Usage: ansible <host-pattern> [options]
+Options:
+  -m MODULE_NAME, --module-name=MODULE_NAME         要执行的模块，默认为command
+  -a MODULE_ARGS, --args=MODULE_ARGS                模块的参数
+  -u REMOTE_USER, --user=REMOTE_USER                ssh连接的用户名，默认用root，ansible.cfg中可以配置
+  -k, --ask-pass        提示输入ssh登录密码，当使用密码验证登录的时候用
+  -s, --sudo            sudo运行
+  -U SUDO_USER, --sudo-user=SUDO_USER               sudo到哪个用户，默认为root
+  -K, --ask-sudo-pass   提示输入sudo密码，当不是NOPASSWD模式时使用
+  -B SECONDS, --background=SECONDS                  run asynchronously, failing after X seconds(default=N/A)
+  -P POLL_INTERVAL, --poll=POLL_INTERVAL            set the poll interval if using -B (default=15)
+  -C, --check           只是测试一下会改变什么内容，不会真正去执行
+  -c CONNECTION         连接类型(default=smart)
+  -f FORKS, --forks=FORKS            fork多少个进程并发处理，默认5
+  -i INVENTORY, --inventory-file=INVENTORY          指定hosts文件路径，默认default=/etc/ansible/hosts
+  -l SUBSET, --limit=SUBSET          指定一个pattern，对<host_pattern>已经匹配的主机中再过滤一次
+  --list-hosts          只打印有哪些主机会执行这个playbook文件，不是实际执行该playboo
+  -M MODULE_PATH, --module-path=MODULE_PATH         要执行的模块的路径，默认为/usr/share/ansible/
+  -o, --one-line        压缩输出，摘要输出
+  --private-key=PRIVATE_KEY_FILE     私钥路径
+  -T TIMEOUT, --timeout=TIMEOUT      ssh连接超时时间，默认10秒
+  -t TREE, --tree=TREE  日志输出到该目录，日志文件名会以主机名命名
+  -v, --verbose         verbose mode (-vvv for more, -vvvv to enable connection debugging)
+```
