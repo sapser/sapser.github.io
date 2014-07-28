@@ -5,7 +5,7 @@ date: 2014-07-21 14:54:00 +0800
 categories: ansible
 ---
 
-ansible的playbook就如同salt的state，一个playbook就是一个普通文件，使用[YAML](http://docs.ansible.com/YAMLSyntax.html)格式，所以playbook文件一般都以`.yml`结尾，playbook使用的`YAML`语法很简单，不用特意去学。此外playbook和模板文件（`template`模块）还可以使用[jinja2语法](http://jinja.pocoo.org/)解决一些复杂问题。 
+ansible的playbook就如同salt的state，一个playbook就是一个[YAML](http://docs.ansible.com/YAMLSyntax.html)文件，所以playbook文件一般都以`.yml`结尾，写playbook不需要复杂的`YAML`语法，所以也不用单独去学`YAML`语法。此外playbook和模板文件（`template`模块）还使用[jinja2语法](http://jinja.pocoo.org/)语法实现高级功能（后面逐一讲到），不光这里，`jinja2`语法很多地方都会用到，比如python大部分web框架的模板系统，所以可以去单独学一下。
 
 一个playbook文件由一个或多个`play`组成，每个`play`定义了在一个或多个远程主机上执行的一系列的`task`，其中每个`task`一般就是调用一个ansible的模块，如调用`copy`模块复制文件到远程主机或调用`shell`模块执行命令。
 

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "kazoo--zookeeper的python驱动"
-date: 2014-07-21 15:27:00 +0800
+date: 2014-07-24 15:27:00 +0800
 categories: python zookeeper
 ---
 

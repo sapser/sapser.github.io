@@ -127,7 +127,7 @@ hosts文件支持一些特定指令，上面已经使用了其中几个，所有
 ansible_ssh_host：指定主机别名对应的真实IP，如：251  ansible_ssh_host=183.60.41.251，随后连接该主机无须指定完整IP，只需指定251就行
 ansible_ssh_port：指定连接到这个主机的ssh端口，默认22
 ansible_ssh_user：连接到该主机的ssh用户
-ansible_ssh_pass：连接到该主机的ssh密码，建议使用私钥或在命令行指定-k选项输入
+ansible_ssh_pass：连接到该主机的ssh密码（连-k选项都省了），安全考虑还是建议使用私钥或在命令行指定-k选项输入
 ansible_sudo_pass：sudo密码
 ansible_connection：连接类型，可以是local、ssh或paramiko，ansible1.2之前默认为paramiko
 ansible_ssh_private_key_file：私钥文件路径
