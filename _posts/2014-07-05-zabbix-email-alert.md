@@ -5,6 +5,16 @@ date:   2014-07-05 10:46:38
 categories: zabbix
 ---
 
+使用自定义脚本实现zabbix邮件报警。
+
+首先`Administration`->`Media types`定义类型为Script，表示调用一个自定义的脚本来发送报警邮件：
+![media types]({{site.baseurl}}/static/images/zabbix_email_alert_mediatypes.png)
+选项`script name`只填脚本名就行了，脚本路径在zabbix_server.conf中通过`AlertScriptsPath`指令配置：
+
+```
+AlertScriptsPath=/usr/local/zabbix/etc               #末尾不带"/"
+```
+脚本需要有<b>可执行权限</b>，且脚本开头需要通过"#!"来指定脚本解释器，zabbix是直接通过绝对路径调用脚本。
 
 zabbix会以命令行参数的方式向脚本传入三个值：收件人、邮件主题、邮件正文。如果有多个收件人，则zabbix会多次调用脚本，每次只传入一个收件人。
 
