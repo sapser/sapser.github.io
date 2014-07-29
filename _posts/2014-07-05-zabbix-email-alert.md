@@ -9,6 +9,7 @@ categories: zabbix
 
 首先`Administration`->`Media types`定义类型为Script，表示调用一个自定义的脚本来发送报警邮件：
 ![media types]({{site.baseurl}}/static/images/zabbix_email_alert_mediatypes.png)
+
 选项`script name`只填脚本名就行了，脚本路径在zabbix_server.conf中通过`AlertScriptsPath`指令配置：
 
 ```
