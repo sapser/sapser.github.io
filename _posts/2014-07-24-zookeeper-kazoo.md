@@ -172,7 +172,8 @@ In [31]: list(zk.hosts)
 Out[31]: [('127.0.0.1', 2181), ('127.0.0.1', 2182), ('127.0.0.1', 2183)]
 ```
 
-zk.last\_zxid          获取zk服务器最新的一个zxid
+zk.last\_zxid          
+获取zk服务器最新的一个zxid
 
 ```python
 In [37]: zk.last_zxid
