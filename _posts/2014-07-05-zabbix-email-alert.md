@@ -31,10 +31,10 @@ from email.header import Header
 from email.mime.text import MIMEText
 
 #需自定义部分
-email_server = 'mail.gtarcade.net'
+email_server = 'mail.126.com'
 email_port = 25
-email_user = 'leagueofangelsmobile@mail.gtarcade.net'
-email_passwd = '1234qwerQWER'
+email_user = 'xxx@126.com'
+email_passwd = 'xxxxxxxx'
 
 
 def _msg(email_user, email_to, subject, content):
