@@ -22,20 +22,19 @@ zabbix会以命令行参数的方式向脚本传入三个值：收件人、邮�
 发送邮件的python脚本如下，smtp服务器及发件人信息需自定义：
 
 ```python
+
 #!/usr/bin/python
 # coding: utf-8
-import os
 import sys
 import smtplib
-from datetime import datetime
 from email.header import Header
 from email.mime.text import MIMEText
 
 #需自定义部分
-email_server = 'smtp.126.com'
+email_server = 'mail.gtarcade.net'
 email_port = 25
-email_user = 'xxx@126.com'
-email_passwd = 'xxx'
+email_user = 'leagueofangelsmobile@mail.gtarcade.net'
+email_passwd = '1234qwerQWER'
 
 
 def _msg(email_user, email_to, subject, content):
@@ -52,6 +51,8 @@ def mailer(subject, content):
     msg = _msg(email_user, email_to, subject, content)
     smtp = smtplib.SMTP()
     smtp.connect(email_server, email_port)
+    smtp.ehlo()
+    smtp.starttls()
     smtp.login(email_user, email_passwd)
     smtp.sendmail(email_user, email_to, msg.as_string())
     smtp.quit()
@@ -59,7 +60,7 @@ def mailer(subject, content):
 
 if __name__ == '__main__':
     #获取由zabbix传入的收件人、邮件主题和邮件正文
-    email_to,subject,content = sys.argv[:3]
+    email_to,subject,content = sys.argv[1:4]
     #发送邮件
     mailer(subject, content)
 ```
