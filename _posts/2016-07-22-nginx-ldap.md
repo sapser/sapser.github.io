@@ -32,16 +32,7 @@ make
 make install
 ```
 
-3、启动所有程序
-
-```bash
-cd /data/nginx-ldap-auth/
-./nginx-ldap-auth-daemon-ctl-rh.sh start
-nohup python backend-sample-app.py &
-/data/nginx/sbin/nginx
-```
-
-4、官方的测试就不做了，详细讲下线上最后正式使用的nginx配置
+3、官方的测试就不做了，详细讲下线上最后正式使用的nginx配置
 
 ```bash
 user                  nobody nobody;
@@ -143,6 +134,15 @@ server {
     }
 }
 }
+```
+
+4、启动所有程序
+
+```bash
+cd /data/nginx-ldap-auth/
+./nginx-ldap-auth-daemon-ctl-rh.sh start
+nohup python backend-sample-app.py &
+/data/nginx/sbin/nginx
 ```
     
 5、通过`http://ip:8081/`访问，正常情况下会跳出`backend-sample-app.py`提供的登陆框，输入用户密码后如果认证成功就会成功跳转到kafka-manager的页面，如果验证失败（返回403）就还是会跳转到登录页面，所以如果始终跳转回登录页面，就说明认证有问题。那么如何调试呢，通过nginx日志是看不出来什么有用信息的，必须通过`nginx-ldap-auth-daemon.py`的日志来调试，但是`nginx-ldap-auth-daemon.py`的日志在哪里呢？看下代码：
