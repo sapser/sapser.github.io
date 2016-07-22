@@ -296,11 +296,9 @@ text-align: left;
 
 <br />
 ####参考文档：
-<ul>
-<li><https://www.nginx.com/blog/nginx-plus-authenticate-users/></li>
-<li><https://github.com/nginxinc/nginx-ldap-auth></li>
-<li><http://nginx.org/en/docs/http/ngx_http_auth_request_module.html></li>
-</ul>
+* <https://www.nginx.com/blog/nginx-plus-authenticate-users/>    
+* <https://github.com/nginxinc/nginx-ldap-auth>    
+* <http://nginx.org/en/docs/http/ngx_http_auth_request_module.html>   
 
 
 
