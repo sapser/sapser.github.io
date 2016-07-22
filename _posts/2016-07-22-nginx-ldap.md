@@ -15,11 +15,11 @@ categories: devops
 cd /data/
 git clone https://github.com/nginxinc/nginx-ldap-auth
 ```
-说明：
-**nginx-ldap-auth.conf** - 一个nginx集成ldap的示例配置文件，我们自己的nginx配置就需要参照该文件。
-**nginx-ldap-auth-daemon.py** - 实际的ldap认证逻辑就在这个脚本中，该脚本会起一个daemon进程。该脚本做两件事，接收到nginx转发过来的请求会返回401给nginx告诉用户还没认证，nginx此时会返回一个登陆页面给用户；然后nginx转发用户密码和对应cookie到该脚本，该脚本去ldap server认证用户，成功返回200给nginx，失败返回403给nginx。按照官方说明，运行该脚本需要`python2`和`python-ldap`模块，请提前pip安装。
-**nginx-ldap-auth-daemon-ctl-rh.sh** - 官方说的用`nginx-ldap-auth-daemon-ctl.sh `来起`nginx-ldap-auth-daemon.py`脚本，但是我是centos系统，用这个脚本才是对的。
-**backend-sample-app.py** - 官方给的一个测试用的后端程序，包含了登录页面和对应的处理逻辑，还有验证成功后返回给用户的信息，因为kafka-manger本身也没有提供登录页面，所以我最后还是用到这个脚本来处理kafka-manager登录相关逻辑。
+说明：    
+**nginx-ldap-auth.conf** - 一个nginx集成ldap的示例配置文件，我们自己的nginx配置就需要参照该文件。    
+**nginx-ldap-auth-daemon.py** - 实际的ldap认证逻辑就在这个脚本中，该脚本会起一个daemon进程。该脚本做两件事，接收到nginx转发过来的请求会返回401给nginx告诉用户还没认证，nginx此时会返回一个登陆页面给用户；然后nginx转发用户密码和对应cookie到该脚本，该脚本去ldap server认证用户，成功返回200给nginx，失败返回403给nginx。按照官方说明，运行该脚本需要`python2`和`python-ldap`模块，请提前pip安装。    
+**nginx-ldap-auth-daemon-ctl-rh.sh** - 官方说的用`nginx-ldap-auth-daemon-ctl.sh `来起`nginx-ldap-auth-daemon.py`脚本，但是我是centos系统，用这个脚本才是对的。    
+**backend-sample-app.py** - 官方给的一个测试用的后端程序，包含了登录页面和对应的处理逻辑，还有验证成功后返回给用户的信息，因为kafka-manger本身也没有提供登录页面，所以我最后还是用到这个脚本来处理kafka-manager登录相关逻辑。   
 
 2、安装Nginx，因为用到了`ngx_http_auth_request_module`模块，所以编译的时候别忘了`--with-http_auth_request_module`
 
@@ -144,7 +144,7 @@ server {
 }
 }
 ```
-
+    
 5、通过`http://ip:8081/`访问，正常情况下会跳出`backend-sample-app.py`提供的登陆框，输入用户密码后如果认证成功就会成功跳转到kafka-manager的页面，如果验证失败（返回403）就还是会跳转到登录页面，所以如果始终跳转回登录页面，就说明认证有问题。那么如何调试呢，通过nginx日志是看不出来什么有用信息的，必须通过`nginx-ldap-auth-daemon.py`的日志来调试，但是`nginx-ldap-auth-daemon.py`的日志在哪里呢？看下代码：
 
 ```python
@@ -290,14 +290,17 @@ text-align: left;
 </html>"""
 ```
 
-总结：
+<br />
+####总结：
 如果是你自己写的程序，建议还是在程序里面做ldap认证逻辑，还可以实现对应的权限管理逻辑。那么nginx层集成ldap的意义在哪里呢，个人觉得当使用kafka-manager这类开源工具的时候就很需要了，因为很难在对这些工具做二次开发，只能通过外部方式来认证，缺点嘛就是权限管理这块实在没有办法做了，如果你有办法再实现权限控制，请务必留言告诉我，多谢！
 
 <br />
-参考文档：
-* <https://www.nginx.com/blog/nginx-plus-authenticate-users/>
-* <https://github.com/nginxinc/nginx-ldap-auth>
-* <http://nginx.org/en/docs/http/ngx_http_auth_request_module.html>
+####参考文档：
+<ul>
+<li><https://www.nginx.com/blog/nginx-plus-authenticate-users/></li>
+<li><https://github.com/nginxinc/nginx-ldap-auth></li>
+<li><http://nginx.org/en/docs/http/ngx_http_auth_request_module.html></li>
+</ul>
 
 
 
