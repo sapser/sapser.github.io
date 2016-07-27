@@ -5,7 +5,7 @@ encoding: utf-8
 #mardown解释器
 #redcarpet支持```python这种语法
 #markdown: redcarpet
-markdown: kramdown
+#markdown: kramdown
 #支持markdown扩展名
 markdown_ext:  markdown,mkdown,mkdn,mkd,md
 
