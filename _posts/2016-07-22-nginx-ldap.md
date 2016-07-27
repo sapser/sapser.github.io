@@ -291,10 +291,12 @@ text-align: left;
 ```
 
     
+
 #### 总结：
 如果是你自己写的程序，建议还是在程序里面做ldap认证逻辑，还可以实现对应的权限管理逻辑。那么nginx层集成ldap的意义在哪里呢，个人觉得当使用kafka-manager这类开源工具的时候就很需要了，因为很难在对这些工具做二次开发，只能通过外部方式来认证，缺点嘛就是权限管理这块实在没有办法做了，如果你有办法再实现权限控制，请务必留言告诉我，多谢！
 
     
+
 #### 参考文档：
 * <https://www.nginx.com/blog/nginx-plus-authenticate-users/>    
 * <https://github.com/nginxinc/nginx-ldap-auth>    

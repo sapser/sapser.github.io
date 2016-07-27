@@ -21,15 +21,15 @@ pip install ansible==1.6.3
 `PowmInsecureWarning: Not using mpz_powm_sec.  You should rebuild using libgmp >= 5 to avoid timing attack vulnerability.`  
 然后通过源码安装gmp-6.0.0包到`/usr`目录下，并重新安装pycrypto包后解决。
 
+    
 
-<br />
 #### 远程连接
 从1.3版本开始，ansible默认使用原生openssh来连接远程主机，并开启`ControlPersist`指令优化连接速度和Kerberos。如果使用的是RHEL系统及其衍生系统如CentOS，openssh的版本太旧，不支持`ControlPersist`（openssh5.6版本才开始增加`ControlPersist`指令），这时候ansible就会选择使用paramiko来连接远程主机。
 
 ansible支持密码验证和私钥验证，默认是使用私钥验证。如果想使用密码验证，则需要为`ansible`和`ansible-playbook`命令提供`-k, --ask-pass`参数，连接远程主机时会提示你输入用户密码。
 
+    
 
-<br />
 #### 第一个命令
 在/etc/ansible/hosts中添加一个远程主机`172.16.9.141`，/etc/ansible/目录不存在就自己创建。  
 如果你使用私钥验证，执行如下命令：
@@ -83,7 +83,8 @@ fi
 Linux centos6 2.6.32-431.el6.x86_64 #1 SMP Fri Nov 22 03:15:09 UTC 2013 x86_64 x86_64 x86_64 GNU/Linux
 ```
 
-<br />
+    
+
 最后附上ansible命令参数：
 
 ```bash
