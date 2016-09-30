@@ -10,7 +10,8 @@ encoding: utf-8
 markdown_ext:  markdown,mkdown,mkdn,mkd,md
 
 #使用pygments来高亮代码
-highlighter: pygments
+#highlighter: pygments
+highlighter: rouge
 
 #uri格式
 permalink: /:categories/:year/:month/:day/:title
