@@ -2,7 +2,7 @@
 layout: post
 title:  "hadoop distcp使用filters参数排除指定文件"
 date:   2016-09-30 10:46:38
-categories: 大数据
+categories: BigData
 ---
 
 使用`hadoop distcp`命令进行hadoop集群数据迁移时，可以使用`-filters`参数排除指定路径不迁移，该参数说明：
