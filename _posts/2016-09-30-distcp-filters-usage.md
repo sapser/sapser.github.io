@@ -24,6 +24,9 @@ hadoop distcp -filters /path/to/filterfile.txt hdfs://source/path hdfs://destina
 ```
 
     
+<br />
+    
+    
 `-filters`使用正则排除文件的逻辑：
 
 ```java
@@ -38,8 +41,12 @@ public boolean shouldCopy(Path path) {
   return true;
 }
 ```
-`Matcher.matches`这个函数只有当正则完整匹配整个文件路径时才返回true，其他情况都返回false表示不匹配，比如正则`\.Trash.*`是匹配不到`/user/root/.Trash/Current`这个路径的
+`Matcher.matches`这个函数只有当正则完整匹配整个文件路径时才返回true，其他情况都返回false表示不匹配，比如正则`\.Trash.*`是匹配不到`/user/root/.Trash/Current`这个路径的。
 
+    
+<br />
+    
+    
 我是在目标集群执行`hadoop distcp`迁移数据，当我在目标集群机器上访问源集群HDFS内容：
 
 ```bash
