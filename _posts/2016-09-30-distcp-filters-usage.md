@@ -6,7 +6,10 @@ categories: 大数据
 ---
 
 使用`hadoop distcp`命令进行hadoop集群数据迁移时，可以使用`-filters`参数排除指定路径不迁移，该参数说明：
-> -filters <arg>                The path to a file containing a list of strings for paths to be excluded from the copy.
+
+```
+-filters <arg>                The path to a file containing a list of strings for paths to be excluded from the copy.
+```
     
 只有一个这么简单的说明，完全不会用啊，幸好google到一篇文章[How to use “filters” to exclude files when in DistCp](http://www.ericlin.me/how-to-use-filters-to-exclude-files-when-in-distcp)给了一个使用正则排除路径的例子，将如下两行正则放入一个普通文件中：
 
@@ -41,15 +44,11 @@ public boolean shouldCopy(Path path) {
 
 ```bash
 shell> hdfs dfs -ls hdfs://10.1.2.3:8022/
-drwxr-xr-x   - root  supergroup          0 2016-03-03 09:37 hdfs://10.1.2.3:8022/apps
 drwxr-xr-x   - hbase hbase               0 2016-08-09 13:46 hdfs://10.1.2.3:8022/hbase
 drwxr-xr-x   - hive  supergroup          0 2016-08-12 16:50 hdfs://10.1.2.3:8022/home
-drwxr-xr-x   - work  supergroup          0 2016-08-27 12:23 hdfs://10.1.2.3:8022/mengju
 drwxrwxr-x   - solr  solr                0 2015-05-06 10:48 hdfs://10.1.2.3:8022/solr
-drwxr-xr-x   - work  supergroup          0 2016-09-23 15:51 hdfs://10.1.2.3:8022/statistic
 drwxr-xr-x   - hdfs  supergroup          0 2016-09-23 15:13 hdfs://10.1.2.3:8022/system
 drwxrwxrwt   - hdfs  supergroup          0 2016-08-21 13:06 hdfs://10.1.2.3:8022/tmp
-drwxr-xr-x   - root  supergroup          0 2016-07-12 22:18 hdfs://10.1.2.3:8022/trident
 drwxr-xr-x   - hdfs  supergroup          0 2016-09-08 14:45 hdfs://10.1.2.3:8022/user
 drwxr-xr-x   - root  supergroup          0 2016-04-19 09:38 hdfs://10.1.2.3:8022/usr
 ```
