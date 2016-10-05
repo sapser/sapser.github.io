@@ -8,6 +8,7 @@ categories: ansible
 ansible可以到多个远程主机执行任务，这些主机信息默认保存在/etc/ansible/hosts文件，可以通过配置文件ansible.cfg的`hostfile`指令修改该默认路径，关于配置文件ansible.cfg不会单独讲，具体请看官方文档：[The Ansible Configuration File](http://docs.ansible.com/intro_configuration.html)
 
 <br />
+
 hosts文件保存所有远程主机的信息，其中大括号表示一个主机组，一个组可以包含一个或多个主机，当你操作一个组的时候也就表示操作该组下的所有主机：
 
 ```bash
@@ -97,6 +98,7 @@ northwest
 
 
 <br />
+
 为host和group定义一些比较复杂的变量时（如array、hash），在hosts文件中不好实现同时也造成hosts文件臃肿不美观，这时可以用单独文件保存host和group变量，以`YAML`格式书写变量，如hosts文件路径为：
 
 ```
@@ -121,6 +123,7 @@ database_server: storage.example.org
 
 
 <br />
+
 hosts文件支持一些特定指令，上面已经使用了其中几个，所有支持的指令如下：
 
 ```

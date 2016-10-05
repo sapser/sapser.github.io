@@ -10,6 +10,7 @@ categories: ansible
 你可以将所有东西都放到一个playbook文件中，但是随着文件越来越大，你修改起来也越来越麻烦。这时候可以把一些`play`、`task`或`handler`放到其他文件中，然后通过`include`指令包含进来，这样做完全没问题，但是ansible还提供了一个更好的解决方法，也就是`roles`，下面分别讲解。
 
 <br />
+
 ### include
 playbook可以包含其他playbook文件、task文件和handler文件。
 
@@ -91,6 +92,7 @@ handlers:
 
 
 <br />
+
 ### Roles
 roles用来组织playbook结构，以多层目录和文件将playbook更好的组织在一起，一个经过roles组织的playbook结构如下：
 

@@ -13,6 +13,7 @@ ansible可以使用多种`host patterns`来指定远程主机，用在如下两�
 
 
 <br />
+
 先在hosts文件定义几个主机：
 
 ```
@@ -23,6 +24,7 @@ ansible可以使用多种`host patterns`来指定远程主机，用在如下两�
 
 
 <br />
+
 #### 匹配hosts中所有主机
 ```bash
 ansible all -m ping
@@ -31,6 +33,7 @@ ansible '*' -m ping
 ```
   
 <br />
+
 #### 指定单个组或主机
 在hosts文件中添加一个组：
 
@@ -61,6 +64,7 @@ ansible '*' -m ping
 
 
 <br />
+
 #### 多个用`:`隔开的组，表示匹配这些组中的所有主机
 在hosts文件中配置两个组：
 
@@ -92,6 +96,7 @@ ansible '*' -m ping
 
 
 <br />
+
 #### 组前面加上`!`表示排除这个组中的主机
 在hosts文件中配置两个组：
 
@@ -119,6 +124,7 @@ ansible '*' -m ping
 
 
 <br />
+
 #### `&`表示求组的交集
 在hosts文件配置两个组：
 
@@ -145,6 +151,7 @@ ansible '*' -m ping
 
 
 <br />
+
 #### 使用通配符
 ```bash
 [sapser@centos6 ansible]$ ansible '1?' -m ping          #匹配"1"开头再接一个任意字符的主机或组
@@ -164,6 +171,7 @@ ansible '*' -m ping
 
 
 <br />
+
 #### 以`~`开头表示使用正则表达式
 在hosts文件配置两个组：
 
@@ -195,6 +203,7 @@ ansible '*' -m ping
 
 
 <br />
+
 同时要注意，`ansible`和`ansible-playbook`命令还提供了`-l,--limit`参数，对上面匹配出的结果会再进行一次过滤：
 
 ```bash

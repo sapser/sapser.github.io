@@ -19,6 +19,7 @@ $ nohup cmd &
 ```
 
 <br />
+
 2、使用`trap`命令忽略`SIGHUP`信号，通过`kill -l`可以看到`SIGHUP`信号对应数字`1`
 
 ```bash
@@ -26,6 +27,7 @@ $ trap '' 1 && cmd &
 ```
 
 <br />
+
 3、使用`setsid`命令让进程跑在新session中，进程自然不会接收到`SIGHUP`信号了
 
 ```bash
@@ -33,5 +35,6 @@ $ setsid cmd &
 ```
 
 <br />
+
 4、使用`screen`或`tmux`来让进程跑在新session中，这个就不详解了，具体google这两个工具的用法
 

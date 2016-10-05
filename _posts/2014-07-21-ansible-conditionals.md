@@ -63,6 +63,7 @@ hostname: {{ ansible_hostname }}
 
 
 <br />
+
 ### when语句
 when语句的作用是只有匹配指定条件，才执行task，when后面使用`jinja2`的表达方式
 
@@ -175,6 +176,7 @@ somethingelse: 42
 
 
 <br />
+
 ### register
 `register`用于注册一个变量，保存命令的结果(shell或command模块)，这个变量可以在后面的`task`、`when`语句或模板文件中使用，该指令用在循环中会有不同，请看[ansible学习之八：Loops]({% post_url 2014-07-21-ansible-loops %})中关于`register`的讲解
 

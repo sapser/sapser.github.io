@@ -10,6 +10,7 @@ kazoo是zookeeper的python驱动，纯python实现。
 
 
 <br />
+
 #### 核心类讲解
 ```python
 kazoo.client.KazooClient(hosts='127.0.0.1:2181', 
@@ -193,6 +194,7 @@ Out[30]: '/xj'
 
 
 <br />
+
 #### 监听连接事件：
 用于监控连接是否断开、恢复或者是会话过期，kazoo通过kazoo.client.KazooState类来实现该功能，该类有三个值如下：
 
@@ -244,6 +246,7 @@ trigger LOST state               #触发LOST状态
 
 
 <br />
+
 #### 重连保持session_id不变：
 客户端与zookeeper服务器的连接断开了，重新连接后zookeeper是如何知道这是之前一个连接的重新连接呢？这是靠KazooClient类的`client_id`参数(是一个双元素元组)来保证的，如果该参数为空表示是一个新连接，此时zookeeper服务器为该连接分配一个`session_id`和对应秘钥(元组形式)；如果该参数不为空，则zookeeper就知道这个连接是之前一个连接断开后重新连接上来的，然后就会去查该连接的session是否过期，如果还没过期就继续保存这个连接的临时节点。  
 当前想到的做法就是，将`zk.client_id`序列化到一个文件中，如`pickle.dump(zk.client_id, fileobj)`，然后下次连接就通过`pickle.load(fileobj)`来获取这个`session_id`，然后传入KazooClient类的`client_id`参数中。
@@ -253,6 +256,7 @@ trigger LOST state               #触发LOST状态
 
 
 <br />
+
 #### watcher
 分为两种：
 <ul>
@@ -362,6 +366,7 @@ children: []          #这里是zk.delete("/xj/a")触发的，对子节点set不
 
 
 <br />
+
 #### 事务：
 zookeeper3.4开始支持事务操作，在一个事务中可以执行多个操作，如果有一个操作未执行成功，则回滚到事务开始之前的状态
 
@@ -374,6 +379,7 @@ results = transaction.commit()
 
 
 <br />
+
 #### chroot（改变连接根节点）：
 可以改变新连接的根节点，这样做有很多好处，比如不同应用只能访问zk服务器的不同节点，不用担心看到或修改了其他应用的节点信息
 

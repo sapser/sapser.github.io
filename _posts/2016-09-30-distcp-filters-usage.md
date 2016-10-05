@@ -10,7 +10,7 @@ categories: bigdata
 ```
 -filters <arg>                The path to a file containing a list of strings for paths to be excluded from the copy.
 ```
-    
+
 只有一个这么简单的说明，完全不会用啊，幸好google到一篇文章[How to use “filters” to exclude files when in DistCp](http://www.ericlin.me/how-to-use-filters-to-exclude-files-when-in-distcp)给了一个使用正则排除路径的例子，将如下两行正则放入一个普通文件中：
 
 ```bash
@@ -23,9 +23,7 @@ categories: bigdata
 hadoop distcp -filters /path/to/filterfile.txt hdfs://source/path hdfs://destination/path
 ```
 
-    
 <br />
-    
     
 `-filters`使用正则排除文件的逻辑：
 
@@ -43,9 +41,7 @@ public boolean shouldCopy(Path path) {
 ```
 `Matcher.matches`这个函数只有当正则完整匹配整个文件路径时才返回true，其他情况都返回false表示不匹配，比如正则`\.Trash.*`是匹配不到`/user/root/.Trash/Current`这个路径的。
 
-    
 <br />
-    
     
 我是在目标集群执行`hadoop distcp`迁移数据，当我在目标集群机器上访问源集群HDFS内容：
 
