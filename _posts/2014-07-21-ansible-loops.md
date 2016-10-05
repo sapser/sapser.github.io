@@ -11,6 +11,7 @@ categories: ansible
 
 
 <br />
+
 #### with_items
 标准循环，最常用到的就是它，`with_items`可以用于迭代一个列表或字典，通过`{{ item }}`获取每次迭代的值，如通过一条task创建多个用户：
 
@@ -34,6 +35,7 @@ categories: ansible
 
 
 <br />
+
 #### with_nested
 嵌套循环
 
@@ -120,6 +122,7 @@ for user in [ 'alice', 'bob', 'eve' ]:
 
 
 <br />
+
 #### with_dict
 迭代字典，接受一个字典类型的值，`{{ item.key }}`是字典的键，`{{ item.value }}`是字典的值，字典值还可以是一个子字典
 
