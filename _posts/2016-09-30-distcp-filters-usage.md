@@ -59,10 +59,11 @@ drwxr-xr-x   - root  supergroup          0 2016-04-19 09:38 hdfs://10.1.2.3:8022
 
 ```bash
 .*\.Trash.*
-.*\.stagine.*
+.*\.staging.*
 hdfs://10.1.2.3:8022/.snapshot/hadoop_distcp_201609301508/hbase.*
 hdfs://10.1.2.3:8022/.snapshot/hadoop_distcp_201609301508/usr/cupid.*
 hdfs://10.1.2.3:8022/.snapshot/hadoop_distcp_201609301508/tmp.*
+hdfs://10.1.2.3:8022/.snapshot/hadoop_distcp_201609301508/user/history.*
 ```
 必须要把路径全部写上才能排除指定路径，或者使用类似`.*\.Trash.*`来排除任何带有`.Trash`的路径。
 
